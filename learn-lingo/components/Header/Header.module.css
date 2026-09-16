@@ -1,0 +1,57 @@
+.header {
+    width: 1184px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 20px;
+    font-weight: 500;
+    color: #121417;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav a {
+    color: #121417;
+    text-decoration: none;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.loginButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.registrationButton {
+    padding: 14px 39px;
+    border: none;
+    border-radius: 12px;
+
+    background: #121417;
+    color: #fff;
+    cursor: pointer;
+}

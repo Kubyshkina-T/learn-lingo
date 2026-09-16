@@ -1,0 +1,31 @@
+
+
+.statsSection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    padding: 40px;
+
+    border: 1.5px dashed var(--accent);
+    border-radius: 30px;
+}
+
+.statsItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.statsNumber {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.statsLabel {
+    max-width: 90px;
+
+    font-size: 14px;
+    color: var(--text-secondary);
+}

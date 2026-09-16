@@ -1,0 +1,25 @@
+body {
+    background-color: var(--surface);
+}
+.loadMoreButton {
+    display: block;
+
+    margin: 64px auto 0;
+    padding: 16px 48px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: var(--accent);
+    color: var(--text-primary);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.loadMoreButton:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
