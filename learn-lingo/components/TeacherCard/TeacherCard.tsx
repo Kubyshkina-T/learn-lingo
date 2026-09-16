@@ -7,9 +7,17 @@ import css from "./TeacherCard.module.css";
 
 type TeacherCardProps = {
   teacher: Teacher;
+  isFavorite: boolean;
+  onFavoriteToggle: () => void;
+  selectedLevel: string;
 };
 
-export default function TeacherCard({ teacher }: TeacherCardProps) {
+export default function TeacherCard({
+  teacher,
+  isFavorite,
+  onFavoriteToggle,
+  selectedLevel,
+}: TeacherCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
@@ -100,9 +108,14 @@ export default function TeacherCard({ teacher }: TeacherCardProps) {
         )}
 
         <div className={css.levels}>
-          {teacher.levels.map((level) => (
-            <span key={level} className={css.level}>
-              #{level}
+          {teacher.levels.map((teacherLevel) => (
+            <span
+              key={teacherLevel}
+              className={`${css.level} ${
+                teacherLevel === selectedLevel ? css.levelActive : ""
+              }`}
+            >
+              #{teacherLevel}
             </span>
           ))}
         </div>
@@ -110,10 +123,18 @@ export default function TeacherCard({ teacher }: TeacherCardProps) {
 
       <button
         type="button"
-        className={css.favoriteButton}
-        aria-label="Add teacher to favorites"
+        className={`${css.favoriteButton} ${
+          isFavorite ? css.favoriteActive : ""
+        }`}
+        onClick={onFavoriteToggle}
+        aria-label={
+          isFavorite
+            ? "Remove teacher from favorites"
+            : "Add teacher to favorites"
+        }
+        aria-pressed={isFavorite}
       >
-        ♡
+        {isFavorite ? "♥" : "♡"}
       </button>
       {isBookingOpen && (
         <BookTrialModal

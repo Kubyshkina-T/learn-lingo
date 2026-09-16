@@ -7,11 +7,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
-
+import LoginModal from "../LoginModal/LoginModal";
 import { auth } from "@/lib/firebase";
 
 export default function Header() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -54,7 +55,9 @@ export default function Header() {
           </>
         ) : (
           <>
-            <button type="button">Log in</button>
+            <button type="button" onClick={() => setIsLoginOpen(true)}>
+              Log in
+            </button>
 
             <button type="button" onClick={() => setIsRegisterOpen(true)}>
               Registration
@@ -62,6 +65,7 @@ export default function Header() {
           </>
         )}
       </div>
+      {isLoginOpen && <LoginModal onClose={() => setIsLoginOpen(false)} />}
     </header>
   );
 }

@@ -6,6 +6,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 10px 0;
+    background-color: var(--background);
 }
 
 .logo {
