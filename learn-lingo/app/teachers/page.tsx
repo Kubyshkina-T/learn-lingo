@@ -29,7 +29,49 @@ export default function TeachersPage() {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loadTeachers = async (loadMore = false) => {};
+  const loadTeachers = async (loadMore = false) => {
+    setIsLoading(true);
+
+    const teachersRef = ref(db);
+
+    const teachersQuery =
+      loadMore && lastKey
+        ? query(
+            teachersRef,
+            orderByKey(),
+            startAfter(lastKey),
+            limitToFirst(PAGE_SIZE),
+          )
+        : query(teachersRef, orderByKey(), limitToFirst(PAGE_SIZE));
+
+    const snapshot = await get(teachersQuery);
+
+    const newTeachers: Teacher[] = [];
+    let newLastKey: string | null = null;
+
+    snapshot.forEach((childSnapshot) => {
+      newTeachers.push({
+        id: childSnapshot.key!,
+        ...childSnapshot.val(),
+      });
+
+      newLastKey = childSnapshot.key;
+    });
+
+    if (loadMore) {
+      setTeachers((prev) => [...prev, ...newTeachers]);
+    } else {
+      setTeachers(newTeachers);
+    }
+
+    setLastKey(newLastKey);
+
+    if (newTeachers.length < PAGE_SIZE) {
+      setHasMore(false);
+    }
+
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     loadTeachers();
@@ -74,6 +116,16 @@ export default function TeachersPage() {
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </div>
+
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => loadTeachers(true)}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Load more"}
+        </button>
+      )}
     </main>
   );
 }

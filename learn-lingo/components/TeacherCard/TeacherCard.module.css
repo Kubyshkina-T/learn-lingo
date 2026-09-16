@@ -119,3 +119,49 @@
     font-size: 30px;
     cursor: pointer;
 }
+
+.expandedContent {
+    margin-top: 16px;
+}
+
+.experience {
+    max-width: 900px;
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    margin-top: 32px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.review p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.bookButton {
+    margin-top: 32px;
+    padding: 16px 48px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: var(--accent);
+    color: var(--text-primary);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+}

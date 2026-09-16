@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import type { Teacher } from "@/app/types/teacher";
+import BookTrialModal from "@/components/BookTrialModal/BookTrialModal";
 import css from "./TeacherCard.module.css";
 
 type TeacherCardProps = {
@@ -6,6 +10,9 @@ type TeacherCardProps = {
 };
 
 export default function TeacherCard({ teacher }: TeacherCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   return (
     <article className={css.card}>
       <div className={css.avatarWrapper}>
@@ -24,6 +31,7 @@ export default function TeacherCard({ teacher }: TeacherCardProps) {
             <span>Lessons online</span>
             <span>Lessons done: {teacher.lessons_done}</span>
             <span>⭐ {teacher.rating}</span>
+
             <span>
               Price / 1 hour: <strong>${teacher.price_per_hour}</strong>
             </span>
@@ -51,9 +59,45 @@ export default function TeacherCard({ teacher }: TeacherCardProps) {
           </p>
         </div>
 
-        <button type="button" className={css.readMore}>
-          Read more
-        </button>
+        {!isExpanded && (
+          <button
+            type="button"
+            className={css.readMore}
+            onClick={() => setIsExpanded(true)}
+          >
+            Read more
+          </button>
+        )}
+
+        {isExpanded && (
+          <div className={css.expandedContent}>
+            <p className={css.experience}>{teacher.experience}</p>
+
+            <div className={css.reviews}>
+              {teacher.reviews?.map((review, index) => (
+                <div
+                  key={`${review.reviewer_name}-${index}`}
+                  className={css.review}
+                >
+                  <div>
+                    <strong>{review.reviewer_name}</strong>
+                    <span> ⭐ {review.reviewer_rating}</span>
+                  </div>
+
+                  <p>{review.comment}</p>
+                </div>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className={css.bookButton}
+              onClick={() => setIsBookingOpen(true)}
+            >
+              Book trial lesson
+            </button>
+          </div>
+        )}
 
         <div className={css.levels}>
           {teacher.levels.map((level) => (
@@ -71,6 +115,12 @@ export default function TeacherCard({ teacher }: TeacherCardProps) {
       >
         ♡
       </button>
+      {isBookingOpen && (
+        <BookTrialModal
+          teacher={teacher}
+          onClose={() => setIsBookingOpen(false)}
+        />
+      )}
     </article>
   );
 }
