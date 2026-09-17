@@ -2,6 +2,7 @@ export type Review = {
   reviewer_name: string;
   reviewer_rating: number;
   comment: string;
+  reviewer_avatar_url?: string;
 };
 
 export type Teacher = {

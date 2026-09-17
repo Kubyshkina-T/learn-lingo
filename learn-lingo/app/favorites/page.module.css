@@ -1,0 +1,32 @@
+.favoritesPage {
+    min-height: calc(100vh - 80px);
+    padding: 96px 0;
+
+    background-color: #f8f8f8;
+}
+
+.container {
+    width: 100%;
+    max-width: 1184px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 0 32px;
+
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.teachersList {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.empty {
+    margin: 0;
+
+    font-size: 18px;
+    color: var(--text-secondary);
+}

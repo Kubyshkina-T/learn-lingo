@@ -163,30 +163,28 @@ export default function TeachersPage() {
   const handleFavoriteToggle = (teacherId: string) => {
     if (!user) {
       toast.error("This feature is available only for authorized users.");
-
       return;
     }
 
-    setFavoriteIds((prev) => {
-      const isFavorite = prev.includes(teacherId);
+    const isFavorite = favoriteIds.includes(teacherId);
 
-      const nextFavorites = isFavorite
-        ? prev.filter((id) => id !== teacherId)
-        : [...prev, teacherId];
+    const nextFavorites = isFavorite
+      ? favoriteIds.filter((id) => id !== teacherId)
+      : [...favoriteIds, teacherId];
 
-      localStorage.setItem(
-        `learnlingo-favorites-${user.uid}`,
-        JSON.stringify(nextFavorites),
-      );
-      if (isFavorite) {
-        toast.success("Removed from favorites");
-      } else {
-        toast.success("Added to favorites");
-      }
-      return nextFavorites;
-    });
+    setFavoriteIds(nextFavorites);
+
+    localStorage.setItem(
+      `learnlingo-favorites-${user.uid}`,
+      JSON.stringify(nextFavorites),
+    );
+
+    if (isFavorite) {
+      toast.success("Removed from favorites");
+    } else {
+      toast.success("Added to favorites");
+    }
   };
-
   return (
     <main className={css.teachersPage}>
       <div className={css.container}>
@@ -202,7 +200,7 @@ export default function TeachersPage() {
           onPriceChange={setPrice}
         />
 
-        <div>
+        <div className={css.teachersList}>
           {filteredTeachers.map((teacher) => (
             <TeacherCard
               key={teacher.id}
@@ -216,6 +214,7 @@ export default function TeachersPage() {
 
         {hasMore && !isFiltering && (
           <button
+            className={css.buttonLoadMore}
             type="button"
             onClick={() => loadTeachers(true)}
             disabled={isLoading}

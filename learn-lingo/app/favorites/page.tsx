@@ -10,6 +10,8 @@ import TeacherCard from "@/components/TeacherCard/TeacherCard";
 
 import type { Teacher } from "@/app/types/teacher";
 
+import css from "./page.module.css";
+
 export default function FavoritesPage() {
   const router = useRouter();
 
@@ -87,30 +89,37 @@ export default function FavoritesPage() {
 
   if (isLoading) {
     return (
-      <main>
-        <p>Loading...</p>
+      <main className={css.favoritesPage}>
+        <div className={css.container}>
+          <p>Loading...</p>
+        </div>
       </main>
     );
   }
 
   return (
-    <main>
-      <h1>Favorites</h1>
+    <main className={css.favoritesPage}>
+      <div className={css.container}>
+        <h1 className={css.title}>Favorites</h1>
 
-      {teachers.length === 0 ? (
-        <p>You haven't added any teachers to favorites yet.</p>
-      ) : (
-        <div>
-          {teachers.map((teacher) => (
-            <TeacherCard
-              key={teacher.id}
-              teacher={teacher}
-              isFavorite={favoriteIds.includes(teacher.id)}
-              onFavoriteToggle={() => handleFavoriteToggle(teacher.id)}
-            />
-          ))}
-        </div>
-      )}
+        {teachers.length === 0 ? (
+          <p className={css.empty}>
+            You haven&apos;t added any teachers to favorites yet.
+          </p>
+        ) : (
+          <div className={css.teachersList}>
+            {teachers.map((teacher) => (
+              <TeacherCard
+                key={teacher.id}
+                teacher={teacher}
+                isFavorite={favoriteIds.includes(teacher.id)}
+                onFavoriteToggle={() => handleFavoriteToggle(teacher.id)}
+                selectedLevel=""
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </main>
   );
 }

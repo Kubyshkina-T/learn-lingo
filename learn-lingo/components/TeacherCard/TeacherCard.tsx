@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+
 import type { Teacher } from "@/app/types/teacher";
 import BookTrialModal from "@/components/BookTrialModal/BookTrialModal";
+
 import css from "./TeacherCard.module.css";
 
 type TeacherCardProps = {
@@ -20,6 +23,7 @@ export default function TeacherCard({
 }: TeacherCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isHeartHovered, setIsHeartHovered] = useState(false);
 
   return (
     <article className={css.card}>
@@ -35,14 +39,47 @@ export default function TeacherCard({
         <div className={css.top}>
           <p className={css.label}>Languages</p>
 
-          <div className={css.info}>
-            <span>Lessons online</span>
-            <span>Lessons done: {teacher.lessons_done}</span>
-            <span>⭐ {teacher.rating}</span>
+          <div className={css.topRight}>
+            <div className={css.info}>
+              <span className={css.infoItem}>
+                <Image src="/book-open-01.svg" alt="" width={16} height={16} />
+                Lessons online
+              </span>
 
-            <span>
-              Price / 1 hour: <strong>${teacher.price_per_hour}</strong>
-            </span>
+              <span className={css.infoItem}>
+                Lessons done: {teacher.lessons_done}
+              </span>
+
+              <span className={css.infoItem}>⭐ Rating: {teacher.rating}</span>
+
+              <span className={css.infoItem}>
+                Price / 1 hour:{" "}
+                <strong className={css.price}>${teacher.price_per_hour}</strong>
+              </span>
+            </div>
+
+            <button
+              type="button"
+              className={css.favoriteButton}
+              onClick={onFavoriteToggle}
+              onMouseEnter={() => setIsHeartHovered(true)}
+              onMouseLeave={() => setIsHeartHovered(false)}
+              aria-label={
+                isFavorite
+                  ? "Remove teacher from favorites"
+                  : "Add teacher to favorites"
+              }
+              aria-pressed={isFavorite}
+            >
+              <Image
+                src={
+                  isFavorite || isHeartHovered ? "/hover.svg" : "/normal.svg"
+                }
+                alt=""
+                width={26}
+                height={26}
+              />
+            </button>
           </div>
         </div>
 
@@ -53,7 +90,9 @@ export default function TeacherCard({
         <div className={css.details}>
           <p>
             <span>Speaks: </span>
-            {teacher.languages.join(", ")}
+            <span className={css.languages}>
+              {teacher.languages.join(", ")}
+            </span>
           </p>
 
           <p>
@@ -87,23 +126,31 @@ export default function TeacherCard({
                   key={`${review.reviewer_name}-${index}`}
                   className={css.review}
                 >
-                  <div>
-                    <strong>{review.reviewer_name}</strong>
-                    <span> ⭐ {review.reviewer_rating}</span>
+                  <div className={css.reviewTop}>
+                    <div className={css.reviewAvatar}>
+                      {review.reviewer_avatar_url ? (
+                        <img
+                          src={review.reviewer_avatar_url}
+                          alt={review.reviewer_name}
+                        />
+                      ) : (
+                        <span>{review.reviewer_name.charAt(0)}</span>
+                      )}
+                    </div>
+
+                    <div className={css.reviewInfo}>
+                      <strong>{review.reviewer_name}</strong>
+
+                      <span className={css.reviewRating}>
+                        ⭐ {review.reviewer_rating}
+                      </span>
+                    </div>
                   </div>
 
-                  <p>{review.comment}</p>
+                  <p className={css.reviewComment}>{review.comment}</p>
                 </div>
               ))}
             </div>
-
-            <button
-              type="button"
-              className={css.bookButton}
-              onClick={() => setIsBookingOpen(true)}
-            >
-              Book trial lesson
-            </button>
           </div>
         )}
 
@@ -119,23 +166,18 @@ export default function TeacherCard({
             </span>
           ))}
         </div>
+
+        {isExpanded && (
+          <button
+            type="button"
+            className={css.bookButton}
+            onClick={() => setIsBookingOpen(true)}
+          >
+            Book trial lesson
+          </button>
+        )}
       </div>
 
-      <button
-        type="button"
-        className={`${css.favoriteButton} ${
-          isFavorite ? css.favoriteActive : ""
-        }`}
-        onClick={onFavoriteToggle}
-        aria-label={
-          isFavorite
-            ? "Remove teacher from favorites"
-            : "Add teacher to favorites"
-        }
-        aria-pressed={isFavorite}
-      >
-        {isFavorite ? "♥" : "♡"}
-      </button>
       {isBookingOpen && (
         <BookTrialModal
           teacher={teacher}

@@ -45,27 +45,45 @@ export default function Header() {
       <div className={css.auth}>
         {user ? (
           <>
-            <Link href="/favorites">Favorites</Link>
+            <Link className={css.linkFavorites} href="/favorites">
+              Favorites
+            </Link>
 
             <span>{user.displayName || user.email}</span>
 
-            <button type="button" onClick={handleLogout}>
+            <button
+              className={css.buttonLogOut}
+              type="button"
+              onClick={handleLogout}
+            >
               Log out
             </button>
           </>
         ) : (
           <>
-            <button type="button" onClick={() => setIsLoginOpen(true)}>
+            <button
+              className={css.loginButton}
+              type="button"
+              onClick={() => setIsLoginOpen(true)}
+            >
+              <Image src="/log-in-01.svg" alt="" width={20} height={20} />
               Log in
             </button>
 
-            <button type="button" onClick={() => setIsRegisterOpen(true)}>
+            <button
+              className={css.registrationButton}
+              type="button"
+              onClick={() => setIsRegisterOpen(true)}
+            >
               Registration
             </button>
           </>
         )}
       </div>
       {isLoginOpen && <LoginModal onClose={() => setIsLoginOpen(false)} />}
+      {isRegisterOpen && (
+        <RegisterModal onClose={() => setIsRegisterOpen(false)} />
+      )}
     </header>
   );
 }

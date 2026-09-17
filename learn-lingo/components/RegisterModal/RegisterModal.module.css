@@ -2,22 +2,18 @@
     position: fixed;
     inset: 0;
     z-index: 1000;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-color: rgba(18, 20, 23, 0.6);
 }
 
 .modal {
     position: relative;
-
     width: 100%;
-    max-width: 565px;
-
+    max-width: 566px;
+max-height: 600px;
     padding: 64px;
-
     background-color: #ffffff;
     border-radius: 30px;
 }
@@ -26,26 +22,26 @@
     position: absolute;
     top: 20px;
     right: 20px;
-
     border: none;
     background: transparent;
-
     font-size: 32px;
     cursor: pointer;
 }
 
 .title {
     margin: 0 0 20px;
-
+letter-spacing: -2%;
+    line-height: 48px;
     font-size: 40px;
     font-weight: 500;
 }
 
 .description {
     margin: 0 0 40px;
-
     color: var(--text-secondary);
-    line-height: 1.4;
+        line-height: 22px;
+        font-size: 16px;
+        font-weight: 400;
 }
 
 .form {
@@ -56,12 +52,10 @@
 
 .form input {
     width: 100%;
-
     padding: 16px 18px;
-
     border: 1px solid rgba(18, 20, 23, 0.1);
     border-radius: 12px;
-
+font-weight: 400;
     font-size: 16px;
     outline: none;
 }
@@ -80,12 +74,16 @@
 .submitButton {
     margin-top: 20px;
     padding: 16px;
-
     border: none;
     border-radius: 12px;
-
-    background-color: var(--accent);
-
+    background-color: var(--accent-dark);
     font-weight: 700;
+    font-size: 18px;
+        letter-spacing: 0%;
     cursor: pointer;
+    transition: background-color 250ms ease;
+}
+.submitButton:hover,
+.submitButton:focus {
+    background-color: var(--accent);
 }

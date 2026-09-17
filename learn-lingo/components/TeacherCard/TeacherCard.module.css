@@ -1,190 +1,4 @@
 .card {
-    position: relative;
-
-    display: flex;
-    gap: 48px;
-
-    max-width: 1184px;
-    padding: 24px;
-margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 24px;
-    margin-bottom: 32px;
-}
-
-.avatarWrapper {
-    width: 120px;
-    height: 120px;
-    flex-shrink: 0;
-
-    padding: 12px;
-
-    border: 3px solid var(--accent);
-    border-radius: 50%;
-}
-
-.avatar {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.content {
-    flex: 1;
-}
-
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.label {
-    margin: 0;
-
-    color: var(--text-secondary);
-    font-size: 16px;
-}
-
-.info {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    font-size: 16px;
-}
-
-.name {
-    margin: 8px 0 32px;
-
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.details p {
-    margin: 0;
-
-    color: var(--text-primary);
-}
-
-.details span {
-    color: var(--text-secondary);
-}
-
-.readMore {
-    margin-top: 16px;
-    padding: 0;
-
-    border: none;
-    background: transparent;
-
-    font-weight: 500;
-    text-decoration: underline;
-
-    cursor: pointer;
-}
-
-.levels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    margin-top: 32px;
-}
-
-.level {
-    padding: 8px 12px;
-
-    border: 1px solid rgba(18, 20, 23, 0.2);
-    border-radius: 35px;
-
-    font-size: 14px;
-}
-
-.favoriteButton {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-
-    border: none;
-    background: transparent;
-
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.expandedContent {
-    margin-top: 16px;
-}
-
-.experience {
-    max-width: 900px;
-    margin: 0;
-
-    line-height: 1.5;
-}
-
-.reviews {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-
-    margin-top: 32px;
-}
-
-.review {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.review p {
-    margin: 0;
-    line-height: 1.5;
-}
-
-.bookButton {
-    margin-top: 32px;
-    padding: 16px 48px;
-
-    border: none;
-    border-radius: 12px;
-
-    background-color: var(--accent);
-    color: var(--text-primary);
-
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-}
-.favoriteButton {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-
-  border: none;
-  background: transparent;
-
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.favoriteActive {
-  color: var(--accent);
-}
-
-.card {
-    position: relative;
-
     display: flex;
     gap: 48px;
 
@@ -207,22 +21,90 @@ margin: 0 auto;
 }
 
 .avatar {
+    display: block;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     border-radius: 50%;
 }
 
 .content {
     flex: 1;
+    min-width: 0;
 }
 
 .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
 
-    padding-right: 48px;
+.label {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.topRight {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    white-space: nowrap;
+}
+
+.infoItem+.infoItem {
+    margin-left: 16px;
+    padding-left: 16px;
+
+    border-left: 1px solid rgba(18, 20, 23, 0.2);
+}
+
+.lessonsOnline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.price {
+    color: #38cd3e;
+    font-weight: 500;
+}
+
+.favoriteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+
+    cursor: pointer;
 }
 
 .name {
@@ -230,14 +112,7 @@ margin: 0 auto;
 
     font-size: 24px;
     font-weight: 500;
-}
-
-.info {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    font-size: 16px;
+    line-height: 1.2;
 }
 
 .details {
@@ -251,6 +126,105 @@ margin: 0 auto;
 
 .details p {
     margin: 0;
+}
+
+.details span {
+    color: var(--text-secondary);
+}
+
+.languages {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 500;
+
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.readMore {
+    margin-top: 16px;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+
+    color: var(--text-primary);
+
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+.expandedContent {
+    margin-top: 16px;
+}
+
+.experience {
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    margin-top: 32px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.reviewTop {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reviewAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background-color: #f2f2f2;
+
+    font-weight: 500;
+}
+
+.reviewAvatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.reviewInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reviewRating {
+    font-size: 14px;
+}
+
+.reviewComment {
+    margin: 0;
+
+    line-height: 1.5;
 }
 
 .levels {
@@ -270,20 +244,30 @@ margin: 0 auto;
     font-size: 14px;
     font-weight: 500;
 }
+
 .levelActive {
-    background-color: var(--accent);
     border-color: var(--accent);
+    background-color: var(--accent);
 }
 
-.favoriteButton {
-    position: absolute;
-    top: 24px;
-    right: 24px;
+.bookButton {
+    margin-top: 32px;
+    padding: 16px 48px;
 
     border: none;
-    background: transparent;
+    border-radius: 12px;
 
-    font-size: 28px;
+    background-color: var(--accent-dark);
+    color: var(--text-primary);
+
+    font-size: 16px;
+    font-weight: 700;
 
     cursor: pointer;
+    transition: background-color 250ms ease;
+
+}
+.bookButton:hover,
+.bookButton:focus{
+    background-color: var(--accent);
 }
