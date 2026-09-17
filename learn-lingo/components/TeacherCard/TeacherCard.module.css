@@ -271,3 +271,7 @@
 .bookButton:focus{
     background-color: var(--accent);
 }
+.detailValue {
+    font-weight: 500;
+    color:var(--text-primary) !important;
+}

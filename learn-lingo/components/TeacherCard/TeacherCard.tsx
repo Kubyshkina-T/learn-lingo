@@ -97,15 +97,16 @@ export default function TeacherCard({
 
           <p>
             <span>Lesson Info: </span>
-            {teacher.lesson_info}
+            <span className={css.detailValue}>{teacher.lesson_info}</span>
           </p>
 
           <p>
             <span>Conditions: </span>
-            {teacher.conditions.join(", ")}
+            <span className={css.detailValue}>
+              {teacher.conditions.join(", ")}
+            </span>
           </p>
         </div>
-
         {!isExpanded && (
           <button
             type="button"
