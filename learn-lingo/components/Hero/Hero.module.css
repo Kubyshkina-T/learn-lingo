@@ -7,14 +7,16 @@
 
 .heroContent {
     display: flex;
-    gap: 24px;
+    gap: 16px;
+
+    flex-direction: column;
 }
 
 .heroTextContainer {
-    width: 720px;
-    height: 530px;
+    width: 100%;
+    height: auto;
 
-    padding: 98px 64px;
+    padding: 32px 24px;
 
     background-color: var(--surface);
     border-radius: 30px;
@@ -25,17 +27,17 @@
 .heroTitle {
     max-width: 548px;
     margin: 0;
-margin-bottom: 32px;
-    font-size: 48px;
+margin-bottom: 24px;
+    font-size: 32px;
     font-weight: 500;
-    line-height: 56px;
+    line-height: 38px;
     letter-spacing: -2%;
 }
 
 .heroTitleAccent {
     font-style: italic;
     font-weight: 400;
-line-height: 56px;
+line-height: inherit;
 letter-spacing: -2%;
     background-color: var(--accent);
     border-radius: 8px;
@@ -44,7 +46,7 @@ letter-spacing: -2%;
 
 .heroDescription {
     max-width: 471px;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -52,9 +54,15 @@ font-weight: 400;
 }
 
 .heroImageContainer {
-    width: 568px;
-    height: 530px;
+    width: 100%;
+    height: auto;
     flex-shrink: 0;
+
+    max-width: 568px;
+
+    align-self: center;
+
+    aspect-ratio: 568 / 530;
 }
 
 .heroImageContainer img {
@@ -64,7 +72,7 @@ font-weight: 400;
     object-fit: cover;
 }
 .buttonHero{
-    padding: 16px 88px;
+    padding: 16px 24px;
     background-color: var(--accent-dark);
     border:none;
     border-radius: 12px;
@@ -74,9 +82,62 @@ font-weight: 400;
     letter-spacing: 0%;
     color: var(--text-primary);
     transition: background-color 250ms ease;
+
+    width: 100%;
 }
 .buttonHero:hover,
 .buttonHero:focus{
     background-color: var(--accent);
     
+}
+@media (min-width: 768px) {
+    .heroContent {
+        gap: 24px;
+    }
+    .heroTextContainer {
+        padding: 48px;
+    }
+    .heroTitle {
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .buttonHero {
+        width: auto;
+        padding: 16px 64px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .heroContent {
+        flex-direction: revert;
+        gap: 24px;
+    }
+    .heroTextContainer {
+        width: 720px;
+        height: 530px;
+        padding: 98px 64px;
+    }
+    .heroTitle {
+        font-size: 48px;
+        line-height: 56px;
+        margin-bottom: 32px;
+    }
+    .heroTitleAccent {
+        line-height: 56px;
+    }
+    .heroDescription {
+        margin-bottom: 64px;
+    }
+    .heroImageContainer {
+        width: 568px;
+        height: 530px;
+        max-width: revert;
+        align-self: revert;
+        aspect-ratio: revert;
+    }
+    .buttonHero {
+        width: revert;
+        padding: 16px 88px;
+    }
 }

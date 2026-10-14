@@ -1,15 +1,19 @@
 .filters {
     display: flex;
-    align-items: flex-end;
-    gap: 20px;
+    align-items: stretch;
+    gap: 16px;
 
     margin-bottom: 32px;
+
+    flex-direction: column;
 }
 
 .filter {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    min-width: 0;
 }
 
 .filter span {
@@ -19,7 +23,7 @@
 }
 
 .filter select {
-    min-width: 180px;
+    min-width: 0;
     padding: 14px 18px;
 
     border: none;
@@ -33,19 +37,29 @@
 
     outline: none;
     cursor: pointer;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    max-width: 100%;
 }
 .filters {
     display: flex;
-    align-items: flex-end;
-    gap: 20px;
+    align-items: stretch;
+    gap: 16px;
 
     margin-bottom: 32px;
+
+    flex-direction: column;
 }
 
 .filter {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    min-width: 0;
 }
 
 .filter span {
@@ -56,7 +70,7 @@
 }
 
 .filter select {
-    min-width: 180px;
+    min-width: 0;
 
     padding: 14px 18px;
 
@@ -70,4 +84,41 @@
 
     outline: none;
     cursor: pointer;
+
+    box-sizing: border-box;
+
+    width: 100%;
+
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 20px;
+    }
+    .filter select {
+        width: auto;
+        min-width: 180px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .filters {
+        flex-direction: revert;
+        align-items: flex-end;
+        gap: 20px;
+        flex-wrap: revert;
+    }
+    .filter {
+        min-width: revert;
+    }
+    .filter select {
+        box-sizing: revert;
+        width: revert;
+        min-width: 180px;
+        max-width: revert;
+    }
 }

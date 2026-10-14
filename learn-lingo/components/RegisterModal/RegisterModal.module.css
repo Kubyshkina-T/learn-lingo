@@ -6,16 +6,24 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(18, 20, 23, 0.6);
+
+    box-sizing: border-box;
+
+    padding: 16px;
 }
 
 .modal {
     position: relative;
     width: 100%;
     max-width: 566px;
-max-height: 600px;
-    padding: 64px;
+max-height: calc(100dvh - 32px);
+    padding: 48px 24px 24px;
     background-color: #ffffff;
     border-radius: 30px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
 }
 
 .closeButton {
@@ -31,13 +39,13 @@ max-height: 600px;
 .title {
     margin: 0 0 20px;
 letter-spacing: -2%;
-    line-height: 48px;
-    font-size: 40px;
+    line-height: 34px;
+    font-size: 28px;
     font-weight: 500;
 }
 
 .description {
-    margin: 0 0 40px;
+    margin: 0 0 24px;
     color: var(--text-secondary);
         line-height: 22px;
         font-size: 16px;
@@ -58,6 +66,10 @@ letter-spacing: -2%;
 font-weight: 400;
     font-size: 16px;
     outline: none;
+
+    box-sizing: border-box;
+
+    min-width: 0;
 }
 
 .form input:focus {
@@ -86,4 +98,41 @@ font-weight: 400;
 .submitButton:hover,
 .submitButton:focus {
     background-color: var(--accent);
+}
+@media (min-width: 768px) {
+    .modal {
+        padding: 48px;
+        max-width: 694px;
+    }
+    .title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .backdrop {
+        box-sizing: revert;
+        padding: revert;
+    }
+    .modal {
+        box-sizing: revert;
+        width: 100%;
+        max-width: 566px;
+        max-height: 600px;
+        overflow-y: revert;
+        padding: 64px;
+    }
+    .title {
+        font-size: 40px;
+        line-height: 48px;
+    }
+    .description {
+        margin: 0 0 40px;
+    }
+    .form input {
+        box-sizing: revert;
+        min-width: revert;
+    }
 }
