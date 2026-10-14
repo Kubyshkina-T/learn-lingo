@@ -1,20 +1,22 @@
 .teachersPage{
     background-color: var(--surface);
+
+    padding: 32px 0;
 }
 .container{
-width: 100%;
+width: calc(100% - 32px);
     max-width: 1184px;
     margin: 0 auto;
 }
 
 .teachersPage {
     min-height: 100vh;
-    padding: 96px 0;
+    padding: 32px 0;
     background-color: #f8f8f8;
 }
 
 .container {
-    width: 100%;
+    width: calc(100% - 32px);
     max-width: 1184px;
     margin: 0 auto;
 }
@@ -22,7 +24,7 @@ width: 100%;
 .teachersList {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 }
 
 .buttonLoadMore{
@@ -35,12 +37,42 @@ width: 100%;
     border-radius: 12px;
     font-weight: 700;
     font-size: 18px;
-    margin:64px auto;
+    margin: 32px auto;
    cursor: pointer;
    transition: background-color 250ms ease;
+
+    max-width: 100%;
 }
 .buttonLoadMore:hover,
 .buttonLoadMore:focus{
     background-color: var(--accent);
 
+}
+@media (min-width: 768px) {
+    .teachersPage {
+        padding: 48px 0;
+    }
+    .container {
+        width: calc(100% - 64px);
+    }
+    .teachersList {
+        gap: 32px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .teachersPage {
+        padding: 96px 0;
+    }
+    .container {
+        width: 100%;
+    }
+    .teachersList {
+        gap: 32px;
+    }
+    .buttonLoadMore {
+        max-width: revert;
+        margin: 64px auto;
+    }
 }

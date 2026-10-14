@@ -1,27 +1,27 @@
 .favoritesPage {
     min-height: calc(100vh - 80px);
-    padding: 96px 0;
+    padding: 32px 0;
 
     background-color: #f8f8f8;
 }
 
 .container {
-    width: 100%;
+    width: calc(100% - 32px);
     max-width: 1184px;
     margin: 0 auto;
 }
 
 .title {
-    margin: 0 0 32px;
+    margin: 0 0 24px;
 
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
 }
 
 .teachersList {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 }
 
 .empty {
@@ -29,4 +29,40 @@
 
     font-size: 18px;
     color: var(--text-secondary);
+
+    overflow-wrap: anywhere;
+}
+@media (min-width: 768px) {
+    .favoritesPage {
+        padding: 48px 0;
+    }
+    .container {
+        width: calc(100% - 64px);
+    }
+    .title {
+        font-size: 32px;
+    }
+    .teachersList {
+        gap: 32px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .favoritesPage {
+        padding: 96px 0;
+    }
+    .container {
+        width: 100%;
+    }
+    .title {
+        font-size: 32px;
+        margin: 0 0 32px;
+    }
+    .teachersList {
+        gap: 32px;
+    }
+    .empty {
+        overflow-wrap: revert;
+    }
 }

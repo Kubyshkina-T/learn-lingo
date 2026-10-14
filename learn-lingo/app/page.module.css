@@ -1,6 +1,18 @@
 .container {
-      width: 100%;
+      width: calc(100% - 32px);
       max-width: 1312px;
       margin: 0 auto;
   
     }
+@media (min-width: 768px) {
+    .container {
+        width: calc(100% - 64px);
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .container {
+        width: 100%;
+    }
+}

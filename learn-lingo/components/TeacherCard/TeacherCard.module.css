@@ -1,12 +1,16 @@
 .card {
     display: flex;
-    gap: 48px;
+    gap: 24px;
 
     width: 100%;
-    padding: 24px;
+    padding: 20px;
 
     background-color: #ffffff;
     border-radius: 24px;
+
+    box-sizing: border-box;
+
+    flex-direction: column;
 }
 
 .avatarWrapper {
@@ -33,12 +37,18 @@
 .content {
     flex: 1;
     min-width: 0;
+
+    overflow-wrap: anywhere;
 }
 
 .top {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
+
+    flex-direction: column;
+
+    gap: 12px;
 }
 
 .label {
@@ -52,8 +62,8 @@
 
 .topRight {
     display: flex;
-    align-items: center;
-    gap: 24px;
+    align-items: flex-start;
+    gap: 12px;
 }
 
 .info {
@@ -62,6 +72,14 @@
 
     font-size: 16px;
     font-weight: 500;
+
+    flex-wrap: wrap;
+
+    gap: 8px 16px;
+
+    min-width: 0;
+
+    flex: 1;
 }
 
 .infoItem {
@@ -73,10 +91,10 @@
 }
 
 .infoItem+.infoItem {
-    margin-left: 16px;
-    padding-left: 16px;
+    margin-left: 0;
+    padding-left: 0;
 
-    border-left: 1px solid rgba(18, 20, 23, 0.2);
+    border-left: none;
 }
 
 .lessonsOnline {
@@ -108,7 +126,7 @@
 }
 
 .name {
-    margin: 8px 0 32px;
+    margin: 16px 0 24px;
 
     font-size: 24px;
     font-weight: 500;
@@ -215,6 +233,8 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+
+    min-width: 0;
 }
 
 .reviewRating {
@@ -232,7 +252,7 @@
     flex-wrap: wrap;
     gap: 8px;
 
-    margin-top: 32px;
+    margin-top: 24px;
 }
 
 .level {
@@ -243,6 +263,10 @@
 
     font-size: 14px;
     font-weight: 500;
+
+    box-sizing: border-box;
+
+    max-width: 100%;
 }
 
 .levelActive {
@@ -252,7 +276,7 @@
 
 .bookButton {
     margin-top: 32px;
-    padding: 16px 48px;
+    padding: 16px 24px;
 
     border: none;
     border-radius: 12px;
@@ -266,6 +290,8 @@
     cursor: pointer;
     transition: background-color 250ms ease;
 
+
+    width: 100%;
 }
 .bookButton:hover,
 .bookButton:focus{
@@ -274,4 +300,68 @@
 .detailValue {
     font-weight: 500;
     color:var(--text-primary) !important;
+}
+@media (min-width: 768px) {
+    .card {
+        flex-direction: row;
+        gap: 24px;
+        padding: 24px;
+    }
+    .top {
+        gap: 16px;
+    }
+    .bookButton {
+        width: auto;
+        padding: 16px 48px;
+    }
+}
+
+/* Preserve the original desktop layout and dimensions. */
+@media (min-width: 1440px) {
+    .card {
+        box-sizing: revert;
+        flex-direction: revert;
+        gap: 48px;
+        padding: 24px;
+    }
+    .top {
+        flex-direction: revert;
+        align-items: center;
+        gap: revert;
+    }
+    .topRight {
+        align-items: center;
+        gap: 24px;
+    }
+    .info {
+        flex-wrap: revert;
+        gap: revert;
+        min-width: revert;
+        flex: 0 1 auto;
+    }
+    .infoItem+.infoItem {
+        margin-left: 16px;
+        padding-left: 16px;
+        border-left: 1px solid rgba(18, 20, 23, 0.2);
+    }
+    .content {
+        overflow-wrap: revert;
+    }
+    .name {
+        margin: 8px 0 32px;
+    }
+    .levels {
+        margin-top: 32px;
+    }
+    .level {
+        box-sizing: revert;
+        max-width: revert;
+    }
+    .bookButton {
+        width: revert;
+        padding: 16px 48px;
+    }
+    .reviewInfo {
+        min-width: revert;
+    }
 }
